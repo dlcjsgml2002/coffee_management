@@ -22,6 +22,10 @@ public class CoffeeManagementUI extends JFrame {
 	private JTextField tfMarginRate;
 
 	public CoffeeManagementUI() {
+		initComponents();
+	}
+
+	private void initComponents() {
 		setTitle("프랜차이즈 커피전문점 상품별 판매실적 계산 프로그램");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
