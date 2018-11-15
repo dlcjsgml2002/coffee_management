@@ -41,25 +41,71 @@ public class SaleDaoImpl implements SaleDao {
 
 	@Override
 	public int insertSale(Sale sale) throws SQLException {
-		return 0;
+		LogUtil.prnLog("insertSale()");
+		String sql = "insert into sale values(?, ?, ?, ?, ?)";
+		int rowAffected = 0;
+		try (Connection conn = ConnectionProvider.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, sale.getNo());
+			pstmt.setString(2, sale.getCode());
+			pstmt.setInt(3, sale.getPrice());
+			pstmt.setInt(4, sale.getSaleCnt());
+			pstmt.setInt(5, sale.getMarginRate());
+			LogUtil.prnLog(pstmt);
+			rowAffected = pstmt.executeUpdate();
+		}
+		return rowAffected;
 	}
 
 	@Override
 	public int deleteSale(Sale sale) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		LogUtil.prnLog("deleteSale()");
+		String sql = "delete from sale where no=?";
+		int rowAffected = 0;
+		try (Connection conn = ConnectionProvider.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);) {
+			pstmt.setInt(1, sale.getNo());
+			LogUtil.prnLog(pstmt);
+			rowAffected = pstmt.executeUpdate();
+		}
+		return rowAffected;
 	}
 
 	@Override
 	public int updateSale(Sale sale) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		LogUtil.prnLog("updateSale()");
+		String sql = "update sale set code=?, price=?, salecnt=?, marginRate=? where no=?";
+		int rowAffected = 0;
+		try (Connection conn = ConnectionProvider.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);) {
+			pstmt.setInt(5, sale.getNo());
+			pstmt.setString(1, sale.getCode());
+			pstmt.setInt(2, sale.getPrice());
+			pstmt.setInt(3, sale.getSaleCnt());
+			pstmt.setInt(4, sale.getMarginRate());
+			LogUtil.prnLog(pstmt);
+			rowAffected = pstmt.executeUpdate();
+		}
+		return rowAffected;
 	}
 
 	@Override
 	public Sale selectSaleByNo(Sale sale) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		LogUtil.prnLog("selectSaleByNo()");
+		Sale sales = null;
+		String sql = "SELECT no, code, price, saleCnt, marginRate from sale where no=?";
+
+		try (Connection conn = ConnectionProvider.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, sale.getNo());
+			LogUtil.prnLog(pstmt);
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					sales = getSale(rs);
+				}
+			}
+		}
+		return sales;
 	}
 
 }
