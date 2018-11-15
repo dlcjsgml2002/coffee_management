@@ -6,13 +6,7 @@ import java.util.List;
 import coffee_management.dto.Sale;
 
 public interface SaleDao {
-	List<Sale> selectSaleByAll();
-
+	List<Sale> selectSaleByAll() throws SQLException;
+	
 	int insertSale(Sale sale) throws SQLException;
-
-	int deleteSale(Sale sale) throws SQLException;
-
-	int updateSale(Sale sale) throws SQLException;
-
-	Sale selectSaleByNo(Sale sale) throws SQLException;
 }
