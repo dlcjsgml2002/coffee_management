@@ -9,7 +9,16 @@ public class Sale {
 	private SaleDetail detail;
 
 	public Sale() {
-		
+
+	}
+
+	public Sale(int no, Product code, int price, int saleCnt, int marginRate, SaleDetail detail) {
+		this.no = no;
+		this.code = code;
+		this.price = price;
+		this.saleCnt = saleCnt;
+		this.marginRate = marginRate;
+		this.detail = detail;
 	}
 
 	public Sale(int no, Product code, int price, int saleCnt, int marginRate) {
@@ -74,8 +83,8 @@ public class Sale {
 
 	@Override
 	public String toString() {
-		return String.format("Sale [no=%s, code=%s, price=%s, saleCnt=%s, marginRate=%s detail=%s]", no, code, price, saleCnt,
-				marginRate, detail);
+		return String.format("Sale [no=%s, code=%s, price=%s, saleCnt=%s, marginRate=%s detail=%s]", no, code, price,
+				saleCnt, marginRate, detail);
 	}
 
 }

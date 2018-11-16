@@ -16,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 
 import coffee_management.dto.Product;
 import coffee_management.dto.Sale;
+import coffee_management.service.OutputService;
 import coffee_management.service.SaleInputService;
 
 public class CoffeeManagementUI extends JFrame implements ActionListener {
@@ -30,10 +31,12 @@ public class CoffeeManagementUI extends JFrame implements ActionListener {
 	private JButton btnPrint1;
 	private JButton btnPrint2;
 
-	private SaleInputService service;
+	private SaleInputService saleservice;
+	private OutputService productService;
 
 	public CoffeeManagementUI() {
-		service = new SaleInputService();
+		saleservice = new SaleInputService();
+		productService = new OutputService();
 		initComponents();
 	}
 
@@ -125,7 +128,7 @@ public class CoffeeManagementUI extends JFrame implements ActionListener {
 				if (tfCode.getText().length() == 4) {
 					Product pdt = new Product(tfCode.getText().trim());
 					try {
-						Product searchPdt = service.searchProduct(pdt);
+						Product searchPdt = saleservice.searchProduct(pdt);
 						System.out.println(searchPdt);
 						tfName.setText(searchPdt.getName());
 					} catch (SQLException e) {
@@ -155,7 +158,7 @@ public class CoffeeManagementUI extends JFrame implements ActionListener {
 		Sale sale = getSale();
 		int res;
 		try {
-			res = service.registerSale(sale);
+			res = saleservice.registerSale(sale);
 			if (res == 1) {
 				JOptionPane.showMessageDialog(null, "추가했습니다.");
 			}
@@ -185,8 +188,12 @@ public class CoffeeManagementUI extends JFrame implements ActionListener {
 	}
 
 	protected void do_btnPrint1_actionPerformed(ActionEvent e) {
+		OutputUI ui = new OutputUI(true);
+		ui.setVisible(true);
 	}
 
 	protected void do_btnPrint2_actionPerformed(ActionEvent e) {
+		OutputUI ui = new OutputUI(false);
+		ui.setVisible(true);
 	}
 }

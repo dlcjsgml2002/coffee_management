@@ -19,7 +19,7 @@ import coffee_management.jdbc.LogUtil;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class SaleDaoTest {
 	static SaleDao dao;
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		System.out.println();
@@ -39,13 +39,40 @@ public class SaleDaoTest {
 		System.out.println();
 	}
 
-	//select
+	// select
 	@Test
 	public void testSelectSaleByAll() throws SQLException {
 		LogUtil.prnLog("selectSaleByAll()");
 		List<Sale> list = dao.selectSaleByAll();
 		LogUtil.prnLog(list.toString());
 		Assert.assertNotNull(list);
+	}
+
+	@Test
+	public void test02selectSaleRankSale() {
+		LogUtil.prnLog("selectSaleRank()");
+		try {
+			List<Sale> list = dao.selectSaleRank(true);
+			LogUtil.prnLog(list.toString());
+			Assert.assertNotNull(list);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} // 판매금액
+	}
+
+	@Test
+	public void test03selectSaleRankMargin() {
+		LogUtil.prnLog("selectSaleMargin()");
+		try {
+			List<Sale> list = dao.selectSaleRank(false);
+			LogUtil.prnLog("size" + list.size());
+			LogUtil.prnLog(list.toString());
+			Assert.assertNotNull(list);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} // 판매금액
 	}
 
 }

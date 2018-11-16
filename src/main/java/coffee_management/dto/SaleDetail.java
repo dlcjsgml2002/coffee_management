@@ -1,28 +1,37 @@
 package coffee_management.dto;
 
 public class SaleDetail {
-	private int supplytax;
+	private int supplyprice;
 	private int addtax;
 	private int saleprice;
 	private int marginprice;
+	private int rank;
 
 	public SaleDetail() {
 
 	}
 
-	public SaleDetail(int supplytax, int addtax, int saleprice, int marginprice) {
-		this.supplytax = supplytax;
+	public SaleDetail(int supplyprice, int addtax, int saleprice, int marginprice, int rank) {
+		this.supplyprice = supplyprice;
+		this.addtax = addtax;
+		this.saleprice = saleprice;
+		this.marginprice = marginprice;
+		this.rank = rank;
+	}
+
+	public SaleDetail(int supplyprice, int addtax, int saleprice, int marginprice) {
+		this.supplyprice = supplyprice;
 		this.addtax = addtax;
 		this.saleprice = saleprice;
 		this.marginprice = marginprice;
 	}
 
-	public int getSupplytax() {
-		return supplytax;
+	public int getSupplyprice() {
+		return supplyprice;
 	}
 
-	public void setSupplytax(int supplytax) {
-		this.supplytax = supplytax;
+	public void setSupplyprice(int supplyprice) {
+		this.supplyprice = supplyprice;
 	}
 
 	public int getAddtax() {
@@ -49,9 +58,17 @@ public class SaleDetail {
 		this.marginprice = marginprice;
 	}
 
+	public int getRank() {
+		return rank;
+	}
+
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+
 	@Override
 	public String toString() {
-		return String.format("SaleDetail [supplytax=%s, addtax=%s, saleprice=%s, marginprice=%s]", supplytax, addtax,
-				saleprice, marginprice);
+		return String.format("SaleDetail [supplyprice=%s, addtax=%s, saleprice=%s, marginprice=%s, rank=%s]", supplyprice,
+				addtax, saleprice, marginprice, rank);
 	}
 }

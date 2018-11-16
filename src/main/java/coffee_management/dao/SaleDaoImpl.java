@@ -1,5 +1,6 @@
 package coffee_management.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,9 +10,10 @@ import java.util.List;
 
 import coffee_management.dto.Product;
 import coffee_management.dto.Sale;
+import coffee_management.dto.SaleDetail;
+import coffee_management.jdbc.ConnectionProvider;
 import coffee_management.jdbc.LogUtil;
 import coffee_management.jdbc.MySQLjdbcUtil;
-import coffee_management.jdbc.ConnectionProvider;
 
 public class SaleDaoImpl implements SaleDao {
 
@@ -62,6 +64,42 @@ public class SaleDaoImpl implements SaleDao {
 			res = pstmt.executeUpdate();
 		}
 		return res;
+	}
+
+	@Override
+	public List<Sale> selectSaleRank(boolean isSale) throws SQLException {
+		LogUtil.prnLog("selectSaleRank");
+		List<Sale> lists = new ArrayList<>();
+		String sql = "{call price_rank(?)}";
+		try (Connection conn = ConnectionProvider.getConnection(); CallableStatement cs = conn.prepareCall(sql);) {
+			cs.setBoolean(1, isSale);
+			LogUtil.prnLog(cs.toString());
+			try (ResultSet rs = cs.executeQuery()) {
+				while (rs.next()) {
+					lists.add(getSaleDetail(rs));
+				}
+			}
+		}
+		LogUtil.prnLog("selectSaleRank" + lists.size());
+		return lists;
+	}
+
+	private Sale getSaleDetail(ResultSet rs) throws SQLException {
+		int no = rs.getInt("no");
+		Product product = new Product(rs.getString("code"), rs.getString("name"));
+		int price = rs.getInt("price");
+		int saleCnt = rs.getInt("saleCnt");
+		int marginRate = rs.getInt("marginRate");
+		int supplyprice = rs.getInt("supplyprice");
+		int addtax = rs.getInt("addtax");
+		int saleprice = rs.getInt("saleprice");
+		int marginprice = rs.getInt("marginprice");
+		int rank = rs.getInt("rank");
+
+		SaleDetail detail = new SaleDetail(supplyprice, addtax, saleprice, marginprice, rank);
+		Sale sale = new Sale(no, product, price, saleCnt, marginRate, detail);
+		LogUtil.prnLog(sale.toString());
+		return sale;
 	}
 
 }
