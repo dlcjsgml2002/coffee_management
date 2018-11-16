@@ -2,16 +2,17 @@ package coffee_management.dto;
 
 public class Sale {
 	private int no;
-	private String code;
+	private Product code;
 	private int price;
 	private int saleCnt;
 	private int marginRate;
+	private SaleDetail detail;
 
 	public Sale() {
 		
 	}
 
-	public Sale(int no, String code, int price, int saleCnt, int marginRate) {
+	public Sale(int no, Product code, int price, int saleCnt, int marginRate) {
 		this.no = no;
 		this.code = code;
 		this.price = price;
@@ -19,7 +20,7 @@ public class Sale {
 		this.marginRate = marginRate;
 	}
 
-	public Sale(String code) {
+	public Sale(Product code) {
 		this.code = code;
 	}
 
@@ -31,11 +32,11 @@ public class Sale {
 		this.no = no;
 	}
 
-	public String getCode() {
+	public Product getCode() {
 		return code;
 	}
 
-	public void setCode(String code) {
+	public void setCode(Product code) {
 		this.code = code;
 	}
 
@@ -63,10 +64,18 @@ public class Sale {
 		this.marginRate = marginRate;
 	}
 
+	public SaleDetail getDetail() {
+		return detail;
+	}
+
+	public void setDetail(SaleDetail detail) {
+		this.detail = detail;
+	}
+
 	@Override
 	public String toString() {
-		return String.format("Sale [no=%s, code=%s, price=%s, saleCnt=%s, marginRate=%s]", no, code, price, saleCnt,
-				marginRate);
+		return String.format("Sale [no=%s, code=%s, price=%s, saleCnt=%s, marginRate=%s detail=%s]", no, code, price, saleCnt,
+				marginRate, detail);
 	}
 
 }

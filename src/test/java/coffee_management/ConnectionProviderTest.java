@@ -1,7 +1,5 @@
 package coffee_management;
 
-import static org.junit.Assert.*;
-
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -18,13 +16,13 @@ public class ConnectionProviderTest {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		System.out.println();
-		LogUtil.prnLog("START ConnectionProviderTest");
+		LogUtil.prnLog("Start ConnectionProviderTest");
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		System.out.println();
-		LogUtil.prnLog("END ConnectionProviderTest");
+		LogUtil.prnLog("End ConnectionProviderTest");
 	}
 
 	@Before

@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import coffee_management.dto.Product;
 import coffee_management.dto.Sale;
 import coffee_management.service.SaleInputService;
 
@@ -89,7 +90,7 @@ public class CoffeeManagementUI extends JFrame implements ActionListener {
 		JLabel lbl_3 = new JLabel("");
 		panel_1.add(lbl_3);
 
-		JLabel lblMarginRate = new JLabel("마 진 율 : ");
+		JLabel lblMarginRate = new JLabel("마진율 : ");
 		panel_1.add(lblMarginRate);
 
 		tfMarginRate = new JTextField();
@@ -116,6 +117,26 @@ public class CoffeeManagementUI extends JFrame implements ActionListener {
 		btnPrint2 = new JButton("출력2");
 		btnPrint2.addActionListener(this);
 		panel.add(btnPrint2);
+
+		tfCode.getDocument().addDocumentListener(new MyDocumentListener() {
+
+			@Override
+			public void msg() {
+				if (tfCode.getText().length() == 4) {
+					Product pdt = new Product(tfCode.getText().trim());
+					try {
+						Product searchPdt = service.searchProduct(pdt);
+						System.out.println(searchPdt);
+						tfName.setText(searchPdt.getName());
+					} catch (SQLException e) {
+						e.printStackTrace();
+					} catch (NullPointerException e) {
+						tfName.setText("해당 제품이 없음");
+					}
+				}
+
+			}
+		});
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -140,6 +161,7 @@ public class CoffeeManagementUI extends JFrame implements ActionListener {
 			}
 			clearTf();
 		} catch (SQLException e1) {
+			JOptionPane.showMessageDialog(null, "유효하지 않은 명령입니다.");
 			e1.printStackTrace();
 		}
 	}
@@ -150,15 +172,16 @@ public class CoffeeManagementUI extends JFrame implements ActionListener {
 		tfName.setText("");
 		tfSaleCnt.setText("");
 		tfMarginRate.setText("");
-		
+
 	}
 
 	private Sale getSale() {
-		String name = tfName.getText().trim();
+		String code = tfCode.getText().trim();
 		int price = Integer.parseInt(tfPrice.getText().trim());
 		int saleCnt = Integer.parseInt(tfSaleCnt.getText().trim());
 		int marginRate = Integer.parseInt(tfMarginRate.getText().trim());
-		return new Sale(0, name, price, saleCnt, marginRate);
+
+		return new Sale(0, new Product(code), price, saleCnt, marginRate);
 	}
 
 	protected void do_btnPrint1_actionPerformed(ActionEvent e) {

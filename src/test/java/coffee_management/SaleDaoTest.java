@@ -41,7 +41,7 @@ public class SaleDaoTest {
 
 	//select
 	@Test
-	public void test() throws SQLException {
+	public void testSelectSaleByAll() throws SQLException {
 		LogUtil.prnLog("selectSaleByAll()");
 		List<Sale> list = dao.selectSaleByAll();
 		LogUtil.prnLog(list.toString());

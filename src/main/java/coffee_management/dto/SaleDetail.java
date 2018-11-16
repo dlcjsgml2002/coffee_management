@@ -7,7 +7,7 @@ public class SaleDetail {
 	private int marginprice;
 
 	public SaleDetail() {
-		
+
 	}
 
 	public SaleDetail(int supplytax, int addtax, int saleprice, int marginprice) {

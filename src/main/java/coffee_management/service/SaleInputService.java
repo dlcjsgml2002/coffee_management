@@ -12,15 +12,16 @@ import coffee_management.dto.Sale;
 public class SaleInputService {
 	private ProductDao productDao;
 	private SaleDao saleDao;
+
 	public SaleInputService() {
 		productDao = new ProductDaoImpl();
 		saleDao = new SaleDaoImpl();
 	}
-	
+
 	public Product searchProduct(Product product) throws SQLException {
 		return productDao.selectProductByCode(product);
 	}
-	
+
 	public int registerSale(Sale sale) throws SQLException {
 		return saleDao.insertSale(sale);
 	}

@@ -38,7 +38,6 @@ public class ProductDaoImpl implements ProductDao {
 		return new Product(code, name);
 	}
 
-	//제품코드로 검색
 	@Override
 	public Product selectProductByCode(Product pdt) throws SQLException {
 		String sql = "select code, name from product where code = ?";
