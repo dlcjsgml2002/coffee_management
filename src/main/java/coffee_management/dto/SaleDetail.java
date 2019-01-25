@@ -1,61 +1,59 @@
 package coffee_management.dto;
 
 public class SaleDetail {
-	private int supplyprice;
-	private int addtax;
-	private int saleprice;
-	private int marginprice;
+	private int supplyTax;
+	private int addTax;
+	private int salePrice;
+	private int marginPrice;
 	private int rank;
 
-	public SaleDetail() {
+	public SaleDetail() {}
 
+	public SaleDetail(int supplyTax, int addTax, int salePrice, int marginPrice) {
+		this.supplyTax = supplyTax;
+		this.addTax = addTax;
+		this.salePrice = salePrice;
+		this.marginPrice = marginPrice;
 	}
 
-	public SaleDetail(int supplyprice, int addtax, int saleprice, int marginprice, int rank) {
-		this.supplyprice = supplyprice;
-		this.addtax = addtax;
-		this.saleprice = saleprice;
-		this.marginprice = marginprice;
+	public SaleDetail(int supplyTax, int addTax, int salePrice, int marginPrice, int rank) {
+		this.supplyTax = supplyTax;
+		this.addTax = addTax;
+		this.salePrice = salePrice;
+		this.marginPrice = marginPrice;
 		this.rank = rank;
 	}
 
-	public SaleDetail(int supplyprice, int addtax, int saleprice, int marginprice) {
-		this.supplyprice = supplyprice;
-		this.addtax = addtax;
-		this.saleprice = saleprice;
-		this.marginprice = marginprice;
+	public int getSupplyTax() {
+		return supplyTax;
 	}
 
-	public int getSupplyprice() {
-		return supplyprice;
+	public void setSupplyTax(int supplyTax) {
+		this.supplyTax = supplyTax;
 	}
 
-	public void setSupplyprice(int supplyprice) {
-		this.supplyprice = supplyprice;
+	public int getAddTax() {
+		return addTax;
 	}
 
-	public int getAddtax() {
-		return addtax;
+	public void setAddTax(int addTax) {
+		this.addTax = addTax;
 	}
 
-	public void setAddtax(int addtax) {
-		this.addtax = addtax;
+	public int getSalePrice() {
+		return salePrice;
 	}
 
-	public int getSaleprice() {
-		return saleprice;
+	public void setSalePrice(int salePrice) {
+		this.salePrice = salePrice;
 	}
 
-	public void setSaleprice(int saleprice) {
-		this.saleprice = saleprice;
+	public int getMarginPrice() {
+		return marginPrice;
 	}
 
-	public int getMarginprice() {
-		return marginprice;
-	}
-
-	public void setMarginprice(int marginprice) {
-		this.marginprice = marginprice;
+	public void setMarginPrice(int marginPrice) {
+		this.marginPrice = marginPrice;
 	}
 
 	public int getRank() {
@@ -68,7 +66,8 @@ public class SaleDetail {
 
 	@Override
 	public String toString() {
-		return String.format("SaleDetail [supplyprice=%s, addtax=%s, saleprice=%s, marginprice=%s, rank=%s]", supplyprice,
-				addtax, saleprice, marginprice, rank);
+		return String.format("SaleDetail [supplyTax=%s, addTax=%s, salePrice=%s, marginPrice=%s, rank=%s]", supplyTax,
+				addTax, salePrice, marginPrice, rank);
 	}
+
 }

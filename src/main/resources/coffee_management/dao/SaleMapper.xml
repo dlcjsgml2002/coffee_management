@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="coffee_management.dao.SaleMapper">
+
+	<resultMap type="Sale" id="resultSale">
+		<id column="no" property="no" />
+		<result column="code" property="product.code" />
+		<result column="name" property="product.name" />
+		<result column="price" property="price" />
+		<result column="saleCnt" property="saleCnt" />
+		<result column="marginRate" property="marginRate" />
+		<result column="salePrice" property="detail.salePrice" />
+		<result column="addTax" property="detail.addTax" />
+		<result column="supplyTax" property="detail.supplyTax" />
+		<result column="marginPrice" property="detail.marginPrice" />
+		<result column="rank" property="detail.rank" />
+	</resultMap>
+
+	<select id="selectSaleByAll" resultMap="resultSale">
+		select no, code, price,
+		saleCnt, marginRate
+		from sale;
+	</select>
+
+	<insert id="insertSale" parameterType="Sale">
+		insert into sale (code, price, saleCnt, marginRate)
+		values (#{product.code}, #{price}, #{saleCnt}, #{marginRate});
+	</insert>
+
+	<select id="selectSaleRank" resultMap="resultSale" statementType="CALLABLE" parameterType="hashmap">
+		{call price_rank(#{isSale, mode=IN, jdbcType=CHAR})}
+	</select>
+</mapper>

@@ -7,11 +7,8 @@
 		</Console>
 
 		<File name="file" fileName="./logs/coffee_management.log" append="true">
-			<PatternLayout
-				pattern="[%d{yyyy-MM-dd}] %m%n" />
+			<PatternLayout pattern="[%d{yyyy-MM-dd}] %m%n" />
 		</File>
-
-
 	</Appenders>
 
 	<Loggers>

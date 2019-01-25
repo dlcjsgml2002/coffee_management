@@ -2,35 +2,40 @@ package coffee_management.dto;
 
 public class Sale {
 	private int no;
-	private Product code;
+	private Product product;
 	private int price;
 	private int saleCnt;
 	private int marginRate;
 	private SaleDetail detail;
 
-	public Sale() {
+	public Sale() {}
 
-	}
-
-	public Sale(int no, Product code, int price, int saleCnt, int marginRate, SaleDetail detail) {
+	public Sale(int no, Product product, int price, int saleCnt, int marginRate, SaleDetail detail) {
 		this.no = no;
-		this.code = code;
+		this.product = product;
 		this.price = price;
 		this.saleCnt = saleCnt;
 		this.marginRate = marginRate;
 		this.detail = detail;
 	}
 
-	public Sale(int no, Product code, int price, int saleCnt, int marginRate) {
-		this.no = no;
-		this.code = code;
+	public Sale(Product product, int price, int saleCnt, int marginRate) {
+		this.product = product;
 		this.price = price;
 		this.saleCnt = saleCnt;
 		this.marginRate = marginRate;
 	}
 
-	public Sale(Product code) {
-		this.code = code;
+	public Sale(int no, Product product, int price, int saleCnt, int marginRate) {
+		this.no = no;
+		this.product = product;
+		this.price = price;
+		this.saleCnt = saleCnt;
+		this.marginRate = marginRate;
+	}
+
+	public Sale(Product product) {
+		this.product = product;
 	}
 
 	public int getNo() {
@@ -41,12 +46,12 @@ public class Sale {
 		this.no = no;
 	}
 
-	public Product getCode() {
-		return code;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setCode(Product code) {
-		this.code = code;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public int getPrice() {
@@ -83,8 +88,8 @@ public class Sale {
 
 	@Override
 	public String toString() {
-		return String.format("Sale [no=%s, code=%s, price=%s, saleCnt=%s, marginRate=%s detail=%s]", no, code, price,
-				saleCnt, marginRate, detail);
+		return String.format("Sale [no=%s, product=%s, price=%s, saleCnt=%s, marginRate=%s, detail=%s]", no, product,
+				price, saleCnt, marginRate, detail);
 	}
 
 }

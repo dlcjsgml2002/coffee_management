@@ -5,9 +5,9 @@ import java.util.List;
 
 import coffee_management.dto.Product;
 
-public interface ProductDao {
+public interface ProductMapper {
 	List<Product> selectProductByAll() throws SQLException;
 
-	Product selectProductByCode(Product pdt) throws SQLException;
-	
+	Product selectProductByCode(Product product) throws SQLException;
+
 }

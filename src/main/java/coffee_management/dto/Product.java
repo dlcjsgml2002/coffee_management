@@ -4,17 +4,15 @@ public class Product {
 	private String code;
 	private String name;
 
-	public Product() {
-		
+	public Product() {}
+
+	public Product(String code) {
+		this.code = code;
 	}
 
 	public Product(String code, String name) {
 		this.code = code;
 		this.name = name;
-	}
-
-	public Product(String code) {
-		this.code = code;
 	}
 
 	public String getCode() {

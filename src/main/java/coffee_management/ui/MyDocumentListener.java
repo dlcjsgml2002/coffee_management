@@ -6,23 +6,19 @@ import javax.swing.event.DocumentListener;
 public interface MyDocumentListener extends DocumentListener {
 
 	@Override
-	default void insertUpdate(DocumentEvent e) {
-		// TODO Auto-generated method stub
+	default void changedUpdate(DocumentEvent arg0) {
 		msg();
 	}
 
 	@Override
-	default void removeUpdate(DocumentEvent e) {
-		// TODO Auto-generated method stub
+	default void insertUpdate(DocumentEvent arg0) {
 		msg();
 	}
 
 	@Override
-	default void changedUpdate(DocumentEvent e) {
-		// TODO Auto-generated method stub
+	default void removeUpdate(DocumentEvent arg0) {
 		msg();
 	}
-	
+
 	public abstract void msg();
-	
 }
